@@ -21,6 +21,9 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         //           tableView.backgroundColor = UIColor.red
+//        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifer")
+        self.tableView.register(UINib(nibName: "Names2TableViewCell", bundle: nil), forCellReuseIdentifier: "cellIdentifer")
+
     
     }
     
@@ -34,7 +37,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifer", for: indexPath) as! NamesTableViewCell
+        let cell: Names2TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifer", for: indexPath) as! Names2TableViewCell
         
         cell.categoryLabel.text = "\(namesArray[indexPath.row])"
         cell.includedLabel.text = namesDetailsArray[indexPath.row]
@@ -42,7 +45,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         cell.remainingLabel.text = namesDetailsArray[indexPath.row]
         cell.profileImage.image = UIImage(named:"profile")
         
-        
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.red.cgColor
         
         
         //        cell?.textLabel?.text = "The SNO \(indexPath.row): Name \(namesArray[indexPath.row])"
@@ -84,6 +88,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
 //    func numberOfSections(in tableView: UITableView) -> Int {
 //        return 3
 //    }
-//    
+//
 }
 
